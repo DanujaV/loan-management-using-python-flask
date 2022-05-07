@@ -6,37 +6,19 @@ app = Flask(__name__)
 @app.route("/saveUser",methods=["GET","POST"])
 def saveUser():
 
-    print(request.method)       
-
     name = "Empy"
     amount = 0
+    
+    print(request.data)
 
     if request.method == "POST":
-        print(request.form)
-        if "name" in request.form:
-            name = request.form["name"]
+        print(request)
+        if "userName" in request.form:
+            name = request.data
         if "amount" in request.form:
             amount = request.form["amount"]
 
-
-    print(name," : ",amount )
-
-    dict1 ={ 
-    'Users' : [
-                    {
-                        'name' : name,
-                        'Amount' : amount,
-                    },
-                ] 
-            } 
-
-    out_file = open("myfile.json", "w")
-    json.dump(dict1, out_file, indent = 2)
-    out_file.close() 
-
-    return render_template("index3.html")
-
-
+    return request.get_json()["userName"]
 
 
 if __name__ =="__main__":
