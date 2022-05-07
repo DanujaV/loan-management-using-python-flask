@@ -34,7 +34,7 @@ def saveUser():
     json.dump(dict1, out_file, indent = 2)
     out_file.close() 
 
-    return render_template("index3.html")
+    return render_template("index.html")
 
 
 
